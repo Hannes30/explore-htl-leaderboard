@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Ebene_1" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352.945 63">
+  <defs>
+    <style>
+      .cls-1 {
+        font-weight: 800;
+      }
+
+      .cls-2 {
+        fill: #00c9a2;
+        font-family: Kallisto-Heavy, Kallisto;
+        font-size: 60px;
+      }
+
+      .cls-3, .cls-4 {
+        fill: #00aaca;
+        font-family: Kallisto-HeavyItalic, Kallisto;
+        font-size: 56px;
+        font-style: italic;
+      }
+
+      .cls-4 {
+        letter-spacing: -.016em;
+      }
+    </style>
+  </defs>
+  <text class="cls-1" transform="translate(0 51.18)"><tspan class="cls-3" x="0" y="0">Explo</tspan><tspan class="cls-4" x="166.878" y="0">r</tspan><tspan class="cls-3" x="191.687" y="0">e</tspan><tspan class="cls-2" x="227.246" y="0">HTL</tspan></text>
+</svg>
