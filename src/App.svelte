@@ -4,7 +4,7 @@
   import Counter from './lib/Counter.svelte'
   import { initializeApp } from "firebase/app";
   import { getAnalytics } from "firebase/analytics";
-  import { getFirestore, collection, getDocs, count } from "firebase/firestore";
+  import { getFirestore, collection, getDocs, count, getDoc } from "firebase/firestore";
   import "./firebase.js";
   import { Firestore } from 'firebase/firestore';
   import firebaseConfig from './firebase.js';
@@ -24,12 +24,11 @@
     .then((querySnapshot) => {
       
       querySnapshot.forEach((doc) => {
-        users.push({Name: doc.data()["Name"],items:doc.data()["items"].length,finished: doc.data()["finished"]
-})
+        users.push({Name: doc.data()["Name"],items:doc.data()["items"].length,finished: doc.data()["finished"]});   
       });
       users.sort((a, b) => {
         const itemDiff = b.items - a.items;
-        return itemDiff === 0 ? b.finished - a.finished  : itemDiff;
+        return itemDiff === 0 ? (b.lastCollected + b.registered) - (a.lastCollected + a.registered)  : itemDiff;
       });
       users = users;
     })
@@ -37,16 +36,17 @@
       console.error("Error getting documents: ", error);
     });
  }
-  setInterval(()=>getUser(),500000)
-
-  
+  setInterval(()=>getUser(),500000) 
 </script>
 
 <main class="mt-5">
-  <div ><h1 class="text-4xl text-center flex justify-center"> <img src="/images/ExploreHTL.svg" alt="Explore Htl Logo" class="w-52 " /> Leaderboard</h1></div>
+  <div>
+    <h1 class="text-4xl text-center flex gap-4 items-center justify-center">
+      <img src="/images/ExploreHTL.png" alt="Explore Htl Logo" class="w-52 pt-2.5" /> <span class="font-semibold">Leaderboard</span></h1>
+    </div>
   <div class="flex justify-center flex-wrap">
   {#each users as user,index}
-    <UserStatistics name = {user.Name} ranking={index+1} finsished={user.finished} collected={user.items}></UserStatistics>
+    <UserStatistics name = {user.Name} ranking={index+1} finsished={user.lastCollected} collected={user.items}></UserStatistics>
   {/each}
 </div>
 </main>
